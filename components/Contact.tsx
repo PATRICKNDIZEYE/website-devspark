@@ -1,8 +1,12 @@
 'use client'
 
+import { useState } from 'react'
 import { Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react'
+import GetInTouchModal from './GetInTouchModal'
 
 const Contact = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   return (
     <section 
       id="contact" 
@@ -53,15 +57,21 @@ const Contact = () => {
           <p className="text-2xl md:text-3xl font-bold text-white mb-4">
             Let&apos;s build something solid.
           </p>
-          <a 
-            href="mailto:info@yourcompany.com"
+          <button 
+            onClick={() => setIsModalOpen(true)}
             className="inline-flex items-center gap-2 bg-white text-emerald-600 px-8 py-4 rounded-full font-semibold transition-all hover:scale-105 hover:shadow-lg"
           >
             GET IN TOUCH
             <ArrowUpRight className="w-5 h-5" />
-          </a>
+          </button>
         </div>
       </div>
+
+      {/* Get In Touch Modal */}
+      <GetInTouchModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </section>
   )
 }

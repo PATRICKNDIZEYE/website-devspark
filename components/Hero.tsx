@@ -1,12 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import { ArrowUpRight, Plus } from "lucide-react";
+import GetInTouchModal from "./GetInTouchModal";
 
 const Hero = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <section
       id="home"
-      className="min-h-screen pt-20 pb-6 px-4 transition-colors duration-300"
+      className="min-h-screen pt-32 md:pt-28 lg:pt-24 pb-6 px-4 transition-colors duration-300"
       style={{ backgroundColor: "var(--bg-primary)" }}
     >
       <div className="max-w-7xl mx-auto h-full">
@@ -40,13 +44,13 @@ const Hero = () => {
 
               {/* Buttons */}
               <div className="flex flex-wrap gap-3">
-                <a
-                  href="#contact"
+                <button
+                  onClick={() => setIsModalOpen(true)}
                   className="bg-white text-[#1a1a1a] border border-[#e0e0e0] px-6 md:px-8 py-3 md:py-4 rounded-full font-medium flex items-center gap-2 transition-all hover:scale-105 hover:shadow-lg text-sm md:text-base"
                 >
                   GET STARTED
                   <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5" />
-                </a>
+                </button>
                 <a
                   href="#services"
                   className="bg-[#1a1a1a] text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-medium transition-all hover:scale-105 hover:bg-[#333] text-sm md:text-base"
@@ -135,18 +139,24 @@ const Hero = () => {
                     Ready to work with us? Contact us and we&apos;ll get back to
                     you
                   </p>
-                  <a
-                    href="#contact"
+                  <button
+                    onClick={() => setIsModalOpen(true)}
                     className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 transition-colors"
                   >
                     <Plus className="w-4 h-4 md:w-5 md:h-5 text-white" />
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Get In Touch Modal */}
+      <GetInTouchModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </section>
   );
 };
